@@ -13,8 +13,8 @@ if os.path.exists("env.py"):
         try:
             conn = pymongo.MongoClient(url)
             return conn
-except pymongo.error.ConnectionFailure as e:
-    print ("Could not connect to MongoDB: %") % e
+        except pymongo.errors.ConnectionFailure as e:
+            print ("Could not connect to MongoDB: %s") % e
 
 
 def show_menu():
@@ -43,9 +43,9 @@ def show_menu():
             elif option == "5":
                 conn.close()                                                                              
                 break
-                else:
-                    print("Invalid option")
-                print("")
+            else:
+                print("Invalid option")
+            print("")
 
 
 conn = mongo_connect(MONGO_URI)
